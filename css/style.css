@@ -1,0 +1,623 @@
+/* ── RESET & BASE ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #e8f5e2;
+  min-height: 100vh;
+  color: #1a1a1a;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ── SITE HEADER ────────────────────────────────────────────────────────── */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1b5e20;
+  letter-spacing: -1px;
+}
+
+.lang-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid #bbb;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  background: white;
+  user-select: none;
+}
+
+/* ── SCREENS ────────────────────────────────────────────────────────────── */
+.screen {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* ── START SCREEN ───────────────────────────────────────────────────────── */
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 10px;
+}
+
+/* Bins illustration */
+.illus-oval {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(120, 200, 120, 0.18);
+  border-radius: 50%;
+  padding: 36px 56px 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.illus-bin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.illus-lid {
+  width: 68px;
+  height: 11px;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  opacity: 0.95;
+}
+
+.illus-lid::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 3px;
+}
+
+.illus-body {
+  width: 60px;
+  height: 80px;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.illus-body svg {
+  width: 32px;
+  height: 42px;
+}
+
+/* Start text */
+.start-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #1b5e20;
+  margin-bottom: 10px;
+}
+
+.start-subtitle {
+  font-size: 1.05rem;
+  color: #4a4a4a;
+  margin-bottom: 32px;
+}
+
+/* Shared button styles */
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 15px 38px;
+  border-radius: 50px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 3px 10px rgba(46, 125, 50, 0.35);
+}
+
+.start-btn:hover  { background: #1b5e20; }
+.start-btn:active { transform: scale(0.97); }
+
+/* ── GAME SCREEN ────────────────────────────────────────────────────────── */
+.game-screen {
+  padding-top: 0;
+}
+
+/* Nav bar */
+.game-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.home-btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.home-btn:hover { background: #1b5e20; }
+
+.progress-wrap {
+  flex: 1;
+  min-width: 120px;
+}
+
+.q-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-icon { font-size: 1rem; }
+
+.progress-track {
+  background: #ccc;
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: #2e7d32;
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.score-display {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.score-display strong {
+  color: #1b5e20;
+  font-size: 1.1rem;
+}
+
+/* Question card */
+.question-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  text-align: center;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.item-emoji {
+  display: block;
+  font-size: 6rem;
+  line-height: 1;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.item-pill {
+  display: inline-block;
+  background: #e8f5e9;
+  border: 1.5px solid #c8e6c9;
+  padding: 8px 26px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2e7d32;
+}
+
+.game-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.next-btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.15s;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+}
+
+.next-btn:hover { background: #1b5e20; }
+.next-btn:active { transform: scale(0.97); }
+
+/* Bins grid */
+.bins-grid {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.bin-tile {
+  width: 106px;
+  height: 106px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  border: none;
+  outline: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+}
+
+.bin-tile:hover:not([disabled]) {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.bin-tile:active:not([disabled]) {
+  transform: translateY(-1px);
+}
+
+.bin-tile[disabled] {
+  cursor: default;
+}
+
+.tile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile-icon svg {
+  width: 48px;
+  height: 54px;
+}
+
+.tile-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.01em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Tile result badges */
+.tile-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Feedback bar */
+.feedback-bar {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.93rem;
+  font-weight: 500;
+  line-height: 1.5;
+  animation: slideUp 0.25s ease;
+}
+
+.fb-correct {
+  background: #d4edda;
+  border-left: 5px solid #28a745;
+  color: #155724;
+}
+
+.fb-wrong {
+  background: #f8d7da;
+  border-left: 5px solid #dc3545;
+  color: #721c24;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESULT SCREEN ──────────────────────────────────────────────────────── */
+.result-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.result-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.result-medal {
+  font-size: 4.5rem;
+  margin-bottom: 10px;
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.result-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 8px;
+}
+
+.result-score {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #e65100;
+  line-height: 1;
+  margin: 12px 0 14px;
+}
+
+.result-score span {
+  font-size: 2rem;
+  color: #888;
+}
+
+.score-pips {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.score-pip {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.pip-filled { background: #2e7d32; }
+.pip-empty  { background: #ddd; }
+
+.result-msg {
+  font-size: 0.98rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ghost-btn {
+  background: transparent;
+  border: 1.5px solid #999;
+  color: #444;
+  padding: 11px 30px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.ghost-btn:hover { background: rgba(0,0,0,0.05); }
+
+/* ── REFERENCE FAB ──────────────────────────────────────────────────────── */
+.ref-fab {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.78rem;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.ref-fab:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* ── REFERENCE PAGE ─────────────────────────────────────────────────────── */
+.ref-page-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 24px 60px;
+}
+
+.ref-back-btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.ref-back-btn:hover { background: #1b5e20; }
+
+.ref-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1b5e20;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.ref-sub {
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.ref-bin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.ref-bin-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.ref-bin-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ref-bin-tile {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ref-bin-tile svg {
+  width: 32px;
+  height: 36px;
+}
+
+.ref-bin-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+.ref-bin-swedish {
+  font-size: 0.8rem;
+  color: #777;
+  font-style: italic;
+}
+
+.ref-bin-card p {
+  font-size: 0.88rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.ref-bin-card p:last-child { margin-bottom: 0; }
+
+.ref-bin-card strong {
+  color: #1b5e20;
+  font-weight: 600;
+}
+
+.ref-source {
+  text-align: center;
+  color: #999;
+  font-size: 0.8rem;
+  margin-top: 32px;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .site-header { padding: 14px 18px; }
+  .logo { font-size: 1.5rem; }
+
+  .illus-oval { padding: 28px 28px 18px; gap: 7px; }
+  .illus-lid  { width: 52px; }
+  .illus-body { width: 46px; height: 64px; }
+  .illus-body svg { width: 24px; height: 32px; }
+
+  .start-title { font-size: 1.8rem; }
+
+  .bin-tile { width: 88px; height: 88px; }
+  .tile-icon svg { width: 38px; height: 44px; }
+  .tile-label { font-size: 0.66rem; }
+
+  .item-emoji { font-size: 4.5rem; }
+
+  .question-card { padding: 20px 16px; }
+  .question-text { font-size: 1.05rem; margin-bottom: 16px; }
+
+  .game-nav { gap: 8px; }
+  .score-display { font-size: 0.85rem; }
+}
